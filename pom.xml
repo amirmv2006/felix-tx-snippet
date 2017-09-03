@@ -13,6 +13,8 @@
         <module>jpamodel</module>
         <module>daoapi</module>
         <module>daojpa</module>
+        <module>serviceapi</module>
+        <module>serviceimpl</module>
     </modules>
 
     <properties>
