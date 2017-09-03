@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ir.amv.snippets.felix</groupId>
+    <artifactId>hastx-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>derbyds</module>
+        <module>jpamodel</module>
+        <module>daoapi</module>
+        <module>daojpa</module>
+    </modules>
+
+    <properties>
+        <!-- Third Party Versions Start-->
+        <!-- Third Party Versions End-->
+
+
+        <aries.osgi.exclude.dependencies>false</aries.osgi.exclude.dependencies>
+        <aries.osgi.symbolic.name>${project.artifactId}</aries.osgi.symbolic.name>
+        <aries.osgi.activator />
+
+        <aries.osgi.import.defaults />
+        <aries.osgi.import.before.defaults />
+        <aries.osgi.import.additional />
+        <aries.osgi.import.pkg>
+            org.apache.aries.*,
+            ${aries.osgi.import.before.defaults},
+            ${aries.osgi.import.defaults},
+            ${aries.osgi.import.additional},
+            *
+        </aries.osgi.import.pkg>
+        <aries.osgi.import>${aries.osgi.import.pkg}</aries.osgi.import>
+        <aries.osgi.private.pkg>${project.artifactId}*.impl</aries.osgi.private.pkg>
+        <aries.osgi.dynamic />
+
+        <aries.osgi.export>${aries.osgi.export.pkg};-noimport:=true</aries.osgi.export>
+        <aries.osgi.export.pkg>!*.impl;${project.artifactId}*</aries.osgi.export.pkg>
+
+        <aries.osgi.include.resource>{maven-resources}</aries.osgi.include.resource>
+        <aries.osgi.remove.headers>Ignore-Package,Include-Resource,Private-Package,Bundle-DocURL</aries.osgi.remove.headers>
+        <aries.osgi.failok>false</aries.osgi.failok>
+        <aries.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</aries.osgi.import.default.version>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>ianal-maven-plugin</artifactId>
+                <version>1.0-alpha-1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>verify-legal-files</goal>
+                        </goals>
+                        <configuration>
+                            <strict>false</strict> <!-- Workaround for build failure even when legal files are there -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.5.0</version>
+                <extensions>true</extensions>
+                <inherited>true</inherited>
+                <configuration>
+                    <excludeDependencies>${aries.osgi.exclude.dependencies}</excludeDependencies>
+                    <instructions>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-SymbolicName>${aries.osgi.symbolic.name}</Bundle-SymbolicName>
+                        <Bundle-Activator>${aries.osgi.activator}</Bundle-Activator>
+                        <Export-Package>${aries.osgi.export}</Export-Package>
+                        <Import-Package>${aries.osgi.import}</Import-Package>
+                        <DynamicImport-Package>${aries.osgi.dynamic}</DynamicImport-Package>
+                        <Private-Package>${aries.osgi.private.pkg}</Private-Package>
+                        <Implementation-Title>Apache Aries</Implementation-Title>
+                        <Implementation-Version>${project.version}</Implementation-Version>
+                        <Bundle-Vendor>The Apache Software Foundation</Bundle-Vendor>
+                        <Include-Resource>${aries.osgi.include.resource}</Include-Resource>
+                        <_removeheaders>${aries.osgi.remove.headers}}</_removeheaders>
+                        <_failok>${aries.osgi.failok}</_failok>
+                        <_consumer-policy>${aries.osgi.import.default.version}</_consumer-policy>
+                        <_provider-policy>$&lt;range;[==,=+)&gt;</_provider-policy>
+                        <Export-Service>${aries.osgi.export.service}</Export-Service>
+                        <Import-Service>${aries.osgi.import.service}</Import-Service>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.aries.jpa.javax.persistence</groupId>
+                <artifactId>javax.persistence_2.1</artifactId>
+                <version>2.7.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>5.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.aries.jpa.example</groupId>
+                <artifactId>org.apache.aries.jpa.example.tasklist.model</artifactId>
+                <version>2.7.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.transaction</groupId>
+                <artifactId>javax.transaction-api</artifactId>
+                <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.aries.jpa</groupId>
+                <artifactId>org.apache.aries.jpa.api</artifactId>
+                <version>2.7.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>org.apache.aries.jpa</groupId>
+                <artifactId>org.apache.aries.jpa.support</artifactId>
+                <version>2.7.0-SNAPSHOT</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>4.3.8.Final</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
