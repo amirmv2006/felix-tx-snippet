@@ -15,16 +15,18 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<blueprint  default-activation="lazy"
+<blueprint  default-activation="eager"
             xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0">
+            xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0">
+
+    <jpa:enable />
 
     <bean id="testDaoJPA" class="ir.amv.snippets.felix.hastx.dao.jpa.impl.TestDaoJPAImpl">
-        <jpa:unit property="emf" unitname="amvPersistenceUnit" />
+        <!--<jpa:unit property="emf" unitname="amvPersistenceUnit" />-->
     </bean>
 
-    <service id="testDaoJPA" ref="testDaoJPA" interface="ir.amv.snippets.felix.hastx.dao.api.ITestDao">
+    <service id="testDaoJPAService" ref="testDaoJPA" interface="ir.amv.snippets.felix.hastx.dao.api.ITestDao">
     </service>
 
 </blueprint>

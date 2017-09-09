@@ -26,14 +26,15 @@
 
 
         <!-- Only used when transaction-type=JTA -->
-        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=AmirDataSource)</jta-data-source>
+        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/AmirDataSource)</jta-data-source>
 
         <!-- Only used when transaction-type=RESOURCE_LOCAL -->
-        <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=NoTxAmirDataSource)</non-jta-data-source>
+        <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/NoTxAmirDataSource)</non-jta-data-source>
         <class>ir.amv.snippets.felix.hastx.jpa.model.TestEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
         </properties>
     </persistence-unit>
 

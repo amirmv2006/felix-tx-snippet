@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hastx-parent</artifactId>
+        <groupId>ir.amv.snippets.felix</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ir.amv.snippets.felix.hast.test.service</artifactId>
+    <packaging>bundle</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>ir.amv.snippets.felix</groupId>
+            <artifactId>ir.amv.snippets.felix.hastx.service.api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- TMP Deps -->
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>org.apache.aries.blueprint.core</artifactId>
+            <version>1.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.jpa</groupId>
+            <artifactId>org.apache.aries.jpa.support</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.jpa</groupId>
+            <artifactId>org.apache.aries.jpa.blueprint</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.transaction</groupId>
+            <artifactId>org.apache.aries.transaction.blueprint</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -28,7 +28,7 @@
   
     <service id="TradeDataSource" ref="derbyXADataSource" interface="javax.sql.XADataSource">
         <service-properties>
-            <entry key="osgi.jndi.service.name" value="jdbc/AmirDataSource"/>
+            <entry key="osgi.jndi.service.name" value="jdbc/AmirXADataSource"/>
         </service-properties>
     </service>
 
@@ -41,7 +41,7 @@
   
     <service id="NoTxTradeDataSource" ref="derbyDataSource" interface="javax.sql.DataSource">
         <service-properties>
-            <entry key="osgi.jndi.service.name" value="jdbc/NoTxAmirDataSource"/>
+            <entry key="osgi.jndi.service.name" value="jdbc/AmirDataSource"/>
         </service-properties>
     </service>
   

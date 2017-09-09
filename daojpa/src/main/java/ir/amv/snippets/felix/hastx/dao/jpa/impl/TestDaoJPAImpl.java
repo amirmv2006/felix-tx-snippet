@@ -7,6 +7,7 @@ import ir.amv.snippets.felix.hastx.dao.api.ITestDao;
 import ir.amv.snippets.felix.hastx.jpa.model.TestEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * @author Amir
@@ -14,8 +15,11 @@ import javax.persistence.EntityManager;
 public class TestDaoJPAImpl
         implements ITestDao {
 
+    @PersistenceContext(unitName = "amvPersistenceUnit")
+    EntityManager em;
+
     private EntityManager getEm() {
-        return null;
+        return em;
     }
 
     public Long save(TestEntity testEntity) {
