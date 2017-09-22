@@ -16,6 +16,7 @@
         <module>serviceapi</module>
         <module>serviceimpl</module>
         <module>testservice</module>
+        <module>postgresqlds</module>
     </modules>
 
     <properties>

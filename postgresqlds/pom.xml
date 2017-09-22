@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hastx-parent</artifactId>
+        <groupId>ir.amv.snippets.felix</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ir.amv.snippets.felix.hastx.pgds</artifactId>
+    <packaging>bundle</packaging>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.transaction</groupId>
+            <artifactId>org.apache.aries.transaction.blueprint</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.components</groupId>
+            <artifactId>geronimo-transaction</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+    </dependencies>
+    <properties>
+        <postgresql.version>9.4.1208-jdbc42-atlassian-hosted</postgresql.version>
+    </properties>
+</project>

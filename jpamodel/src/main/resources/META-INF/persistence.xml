@@ -32,7 +32,7 @@
         <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/NoTxAmirDataSource)</non-jta-data-source>
         <class>ir.amv.snippets.felix.hastx.jpa.model.TestEntity</class>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.archive.autodetection" value="class"/>
         </properties>
